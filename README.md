@@ -29,7 +29,7 @@ This notebook was solely designed and tested on [Google Colab](https://colab.res
 
 # Usage
 
-![Flowchart of the Software Stack Program](assets/images/flowchart-ssp.png)
+[Flowchart of the Software Stack Program](assets/images/flowchart-ssp.png)
 ...
 
 
