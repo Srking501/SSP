@@ -220,44 +220,44 @@ First, the [Data Processing Stack](#data-processing-stack) is solely designed to
 
 ```Python
 if len(contours) != 0:
-                    frames_with_missing_person.append(temp_frame)
-                    for label in CLASSES:
-                        label_name = "Person"
-                        if label == label_name:
-                            labels_for_missing_person.append(CLASSES.index(label_name))
-                            print("Found:", label_name, ", Label Num:", CLASSES.index(label_name))
-                    proces_images(path, contours, frame, temp_frame, progress)
-                else:
-                    frames_without_missing_person.append(temp_frame)
-                    for label in CLASSES:
-                        label_name = "No Person"
-                        if label == label_name:
-                            labels_for_without_missing_person.append(CLASSES.index(label_name))
-                            print("Found:", label_name, ", Label Num:", CLASSES.index(label_name))
+    frames_with_missing_person.append(temp_frame)
+    for label in CLASSES:
+        label_name = "Person"
+        if label == label_name:
+            labels_for_missing_person.append(CLASSES.index(label_name))
+            print("Found:", label_name, ", Label Num:", CLASSES.index(label_name))
+    proces_images(path, contours, frame, temp_frame, progress)
+else:
+    frames_without_missing_person.append(temp_frame)
+    for label in CLASSES:
+        label_name = "No Person"
+        if label == label_name:
+            labels_for_without_missing_person.append(CLASSES.index(label_name))
+            print("Found:", label_name, ", Label Num:", CLASSES.index(label_name))
 ```
 As you can see the above code snippet, the conditions are hardcoded to label the dataset as `"Person"` or `"No Person"`.
 
 ```Python
 if YOLO_MODEL is True:
-                file_without_extension = os.path.splitext(os.path.basename(path))[0]
-                frame_file_name = "{0}{1}-{2}".format(YOLO_FRAMES, file_without_extension, progress)
+    file_without_extension = os.path.splitext(os.path.basename(path))[0]
+    frame_file_name = "{0}{1}-{2}".format(YOLO_FRAMES, file_without_extension, progress)
 
-                if os.path.isfile(frame_file_name + ".jpg") is False:
-                    cv2.imwrite(frame_file_name + ".jpg", clean_frame)
+    if os.path.isfile(frame_file_name + ".jpg") is False:
+        cv2.imwrite(frame_file_name + ".jpg", clean_frame)
 
-                # Coordinates data
-                if os.path.isfile(frame_file_name + ".txt"):
-                    coord_file = open(frame_file_name + ".txt", "a")
-                    coord_file.write("0 {0} {1} {2} {3}\n".format((x + 10) / IMG_SIZE, (y + 10) / IMG_SIZE,
-                                                                  w / IMG_SIZE, h / IMG_SIZE))
-                    coord_file.close()
-                else:
-                    coord_file = open(frame_file_name + ".txt", "w")
-                    coord_file.write("0 {0} {1} {2} {3}\n".format((x + 10) / IMG_SIZE, (y + 10) / IMG_SIZE,
-                                                                  w / IMG_SIZE, h / IMG_SIZE))
-                    coord_file.close()
+    # Coordinates data
+    if os.path.isfile(frame_file_name + ".txt"):
+        coord_file = open(frame_file_name + ".txt", "a")
+        coord_file.write("0 {0} {1} {2} {3}\n".format((x + 10) / IMG_SIZE, (y + 10) / IMG_SIZE,
+                                                        w / IMG_SIZE, h / IMG_SIZE))
+        coord_file.close()
+    else:
+        coord_file = open(frame_file_name + ".txt", "w")
+        coord_file.write("0 {0} {1} {2} {3}\n".format((x + 10) / IMG_SIZE, (y + 10) / IMG_SIZE,
+                                                        w / IMG_SIZE, h / IMG_SIZE))
+        coord_file.close()
 ```
-In here, the above code snippet has hardcoded the number `"0"` which corresponds to the class name `"Person"` in the `YOLO_NAMES_FILE` (see above to the code snippet for the [[YOLO SET-UP](#setup-and-hyper-parameters-for-the-program-to-work) in the Usage section](#usage))
+In here, the above code snippet has hardcoded the number `"0"` which corresponds to the class name `"Person"` in the `YOLO_NAMES_FILE` (see above to the code snippet for the [YOLO SET-UP](#setup-and-hyper-parameters-for-the-program-to-work) in the [Usage section](#usage)
 
 Second, there is no constant variable to change the input size of the YOLO model. The model uses the default pixel input size of `416x416` when being read by the [Darknet framework](https://github.com/AlexeyAB/darknet) in the [Data Manipulation and Training of ML Models Stack](#data-manipulation-and-training-of-ml-models-stack).
 
