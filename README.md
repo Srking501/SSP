@@ -280,4 +280,4 @@ Special Thanks to: [The Centre for Search Research (TCSR)](https://tcsr.org.uk/)
 
 # License
 
-...
+This program is licensed by the [GNU GPLv3](LICENSE.md)
